@@ -154,6 +154,170 @@ echo $renderer->render($form->toArray());
 
 
 
+And here is a little demo that I made: [chloroform demo](http://lingtalfi.com/universe/Ling/Chloroform_HydrogenRenderer/prototype_php?d).
+
+The exact for this demo is written below.
+
+If you want to use it, don't forget to update the references to the assets.
+
+```php
+<?php
+
+
+use Ling\Chloroform\Field\CheckboxField;
+use Ling\Chloroform\Field\ColorField;
+use Ling\Chloroform\Field\CSRFField;
+use Ling\Chloroform\Field\DateField;
+use Ling\Chloroform\Field\DateTimeField;
+use Ling\Chloroform\Field\FileField;
+use Ling\Chloroform\Field\HiddenField;
+use Ling\Chloroform\Field\NumberField;
+use Ling\Chloroform\Field\PasswordField;
+use Ling\Chloroform\Field\RadioField;
+use Ling\Chloroform\Field\SelectField;
+use Ling\Chloroform\Field\StringField;
+use Ling\Chloroform\Field\TextField;
+use Ling\Chloroform\Field\TimeField;
+use Ling\Chloroform\Form\Chloroform;
+use Ling\Chloroform\FormNotification\ErrorFormNotification;
+use Ling\Chloroform\FormNotification\SuccessFormNotification;
+use Ling\Chloroform\Validator\CSRFValidator;
+use Ling\Chloroform\Validator\FileMimeTypeValidator;
+use Ling\Chloroform\Validator\MinMaxCharValidator;
+use Ling\Chloroform\Validator\MinMaxDateValidator;
+use Ling\Chloroform\Validator\MinMaxFileSizeValidator;
+use Ling\Chloroform\Validator\MinMaxItemValidator;
+use Ling\Chloroform\Validator\MinMaxNumberValidator;
+use Ling\Chloroform\Validator\PasswordConfirmValidator;
+use Ling\Chloroform\Validator\PasswordValidator;
+use Ling\Chloroform\Validator\RequiredDateValidator;
+use Ling\Chloroform\Validator\RequiredValidator;
+use Ling\Chloroform_HydrogenRenderer\HydrogenRenderer;
+
+
+//--------------------------------------------
+// Creating the form
+//--------------------------------------------
+$form = new Chloroform();
+$form->addField(StringField::create("First name"), [RequiredValidator::create()]);
+$form->addField(TextField::create("Description"), [RequiredValidator::create(), MinMaxCharValidator::create()->setMin(2)]);
+$form->addField(NumberField::create("Age"), [RequiredValidator::create(), MinMaxNumberValidator::create()->setMin(0)->setMax(150)]);
+$form->addField(HiddenField::create("nathalie_je_t_aime")->setValue("158"));
+$form->addField(CSRFField::create("csrf_token"), [CSRFValidator::create()]);
+$form->addField(ColorField::create("Background color"));
+$form->addField(DateField::create("Birthday"), [MinMaxDateValidator::create()->setMax(date("Y-m-d"))]);
+$form->addField(TimeField::create("What time do you go to bed?", [
+    "useSecond" => false,
+])->setId("bedtime"));
+$form->addField(DateTimeField::create("When exactly was the last time you ate a burger at MacDonalds?")
+    ->setErrorName("eat time")
+    ->setId("eattime"), [RequiredDateValidator::create()]);
+
+
+$form->addField(SelectField::create("Country")->setItems([
+    "france" => "France",
+    "germany" => "Germany",
+    "italy" => "Italy",
+    "japan" => "Japan",
+]));
+
+
+$form->addField(SelectField::create("Animal")->setItems([
+    'Dog' => [
+        'labrador_retriever' => "Labrador Retriever",
+        'bulldog' => "Bulldog",
+        'german_shepherd' => "German Shepherd",
+    ],
+    'Cat' => [
+        'persian_cat' => "Persian cat",
+        'maine_coon' => "Maine Coon",
+        'siamese_cat' => "Siamese cat",
+    ],
+]));
+
+$form->addField(SelectField::create("Favorite colors", ["multiple" => true,])->setItems([
+    "red" => "Red",
+    "blue" => "Blue",
+    "green" => "Green",
+    "yellow" => "Yellow",
+]));
+
+
+$form->addField(CheckboxField::create("Do you like sushis?")->setItems([
+    "yes" => "Yes",
+]));
+
+$form->addField(CheckboxField::create("Favorite sports")->setItems([
+    "judo" => "Judo",
+    "karate" => "Karate",
+    "basket" => "Basket-ball",
+]), [RequiredValidator::create(), MinMaxItemValidator::create()->setMax(2)]);
+
+
+$form->addField(RadioField::create("Favorite Cameron movie")->setItems([
+    "avatar" => "Avatar",
+    "alita" => "Alita",
+    "alien" => "Alien",
+]));
+
+
+$form->addField(FileField::create("Upload your avatar")->setId("avatar")
+    ->setErrorName("avatar")
+    ->setHint("Should be an image (jpeg, gif or png)"), [
+    MinMaxFileSizeValidator::create()->setMax("2M"),
+    FileMimeTypeValidator::create()->setMimeTypes(["image/jpeg", 'image/png', 'image/gif'])
+]);
+$form->addField(PasswordField::create("Password")
+    ->setHint("It should contain at least one letter, one digit, and one special character"), [PasswordValidator::create()
+    ->setNbAlpha(3)
+    ->setNbDigits(2)
+    ->setNbSpecial(1)
+]);
+$form->addField(PasswordField::create("Confirm the password"), [PasswordConfirmValidator::create()->setOtherFieldId("password")]);
+
+
+//--------------------------------------------
+// Posting the form and validating data
+//--------------------------------------------
+if (true === $form->isPosted()) {
+    if (true === $form->validates()) {
+        $form->addNotification(SuccessFormNotification::create("ok"));
+        // do something with $postedData;
+        $postedData = $form->getPostedData();
+    } else {
+        $form->addNotification(ErrorFormNotification::create("There was a problem."));
+    }
+} else {
+    $valuesFromDb = []; // get the values from the database if necessary...
+    $form->injectValues($valuesFromDb);
+}
+
+
+//--------------------------------------------
+// Template part
+//--------------------------------------------
+$formArray = $form->toArray();
+
+
+?>
+    <link rel="stylesheet" href="/css/pages/universe/Ling/Chloroform_HydrogenRenderer/hydrogen.css">
+    <script
+            src="https://code.jquery.com/jquery-3.4.0.min.js"
+            integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+            crossorigin="anonymous"></script>
+    <script src="/js/pages/universe/Ling/Chloroform_HydrogenRenderer/hydrogen.js"></script>
+<?php
+$renderer = new HydrogenRenderer([
+    "useEnctypeMultiformData" => true,
+]);
+echo $renderer->render($form->toArray());
+
+
+```
+
+
+
+
 
 Creating other renderers
 ===========
@@ -190,6 +354,10 @@ Depending on your css skills, you might get another look and feel quite easily.
 History Log
 =============
 
+- 1.0.1 -- 2019-04-18
+
+    - add demo in the README.md file
+    
 - 1.0.0 -- 2019-04-18
 
     - initial commit
