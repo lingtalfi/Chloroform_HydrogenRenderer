@@ -41,7 +41,7 @@ Summary
 What is it?
 ============
 
-This is my first [Chloroform](https://github.com/lingtalfi/Chloroform)renderer attempt.
+This is my first [Chloroform](https://github.com/lingtalfi/Chloroform) renderer attempt.
 
 It basically renders a Chloroform form.
 
