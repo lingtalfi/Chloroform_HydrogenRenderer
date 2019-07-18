@@ -354,6 +354,10 @@ Depending on your css skills, you might get another look and feel quite easily.
 History Log
 =============
 
+- 1.0.2 -- 2019-07-18
+
+    - update docTools documentation, add links to source code for classes and methods
+    
 - 1.0.1 -- 2019-04-18
 
     - add demo in the README.md file

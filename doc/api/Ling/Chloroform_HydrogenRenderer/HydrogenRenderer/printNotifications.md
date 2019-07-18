@@ -49,6 +49,11 @@ Returns void.
 
 
 
+Source Code
+===========
+See the source code for method [HydrogenRenderer::printNotifications](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php#L217-L227)
+
+
 See Also
 ================
 

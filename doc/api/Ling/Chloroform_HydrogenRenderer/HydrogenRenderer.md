@@ -4,7 +4,7 @@
 
 The HydrogenRenderer class
 ================
-2019-04-15 --> 2019-04-18
+2019-04-15 --> 2019-07-18
 
 
 
@@ -176,7 +176,9 @@ Methods
 
 Location
 =============
-Ling\Chloroform_HydrogenRenderer\HydrogenRenderer
+Ling\Chloroform_HydrogenRenderer\HydrogenRenderer<br>
+See the source code of [Ling\Chloroform_HydrogenRenderer\HydrogenRenderer](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php)
+
 
 
 SeeAlso

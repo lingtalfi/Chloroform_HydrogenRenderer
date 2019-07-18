@@ -49,6 +49,11 @@ Returns void.
 
 
 
+Source Code
+===========
+See the source code for method [HydrogenRenderer::printNumberField](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php#L389-L392)
+
+
 See Also
 ================
 
