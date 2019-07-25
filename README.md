@@ -9,6 +9,8 @@ A basic renderer for [Chloroform](https://github.com/lingtalfi/Chloroform).
 
 This is part of the [universe framework](https://github.com/karayabin/universe-snapshot).
 
+[Chloroform_HydrogenRenderer demo](https://lingtalfi.com/universe/Ling/Chloroform_HydrogenRenderer/prototype_php)
+
 
 Install
 ==========
@@ -40,6 +42,10 @@ Summary
 
 What is it?
 ============
+
+
+![screenshot](https://lingtalfi.com/img/universe/Chloroform_HydrogenRenderer/Chloroform_HydrogenRenderer.png)
+
 
 This is my first [Chloroform](https://github.com/lingtalfi/Chloroform) renderer attempt.
 
@@ -354,6 +360,10 @@ Depending on your css skills, you might get another look and feel quite easily.
 History Log
 =============
 
+- 1.0.3 -- 2019-07-25
+
+    - update README.md
+    
 - 1.0.2 -- 2019-07-18
 
     - update docTools documentation, add links to source code for classes and methods
