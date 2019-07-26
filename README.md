@@ -34,6 +34,7 @@ Summary
     * [Implemented js validators](#implemented-js-validators)
 * [How to use](#how-to-use)
 * [Creating other renderers](#creating-other-renderers)
+* [Related](#related)
 * [History Log](#history-log)
 
 
@@ -357,9 +358,20 @@ Depending on your css skills, you might get another look and feel quite easily.
 
 
 
+Related
+===========
+- [Chloroform](https://github.com/lingtalfi/Chloroform), the library to create the form structure
+- [Chloroform Helium renderer](https://github.com/lingtalfi/Chloroform_HeliumRenderer), a boostrap 4 renderer for chloroform
+
+
+
 History Log
 =============
 
+- 1.2.2 -- 2019-07-26
+
+    - update doc
+    
 - 1.2.1 -- 2019-07-26
 
     - fix HydrogenRenderer->printJsHandler typo
