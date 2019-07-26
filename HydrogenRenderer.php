@@ -88,6 +88,7 @@ class HydrogenRenderer implements ChloroformRendererInterface
      * - displayErrorMode: string=both (both | inline | summary). How to display error messages: whether inline (i.e. above the form fields),
      *          in an error summary at the top of the form (summary mode), or both at the same time.
      * - useValidation: bool=true. Set it to false to debug static validation, or if you don't need js validation at all.
+     * - renderPrintsJsHandler: bool=true. Whether the render method should print the js handler. If false, you are responsible for printing the js handler manually wherever you see fit (usually just before the body tag).
      *
      *
      *
@@ -134,6 +135,7 @@ class HydrogenRenderer implements ChloroformRendererInterface
             ],
             "displayErrorMode" => "both",
             "useValidation" => true,
+            "renderPrintsJsHandler" => true,
         ], $options);
 
 
@@ -193,12 +195,14 @@ class HydrogenRenderer implements ChloroformRendererInterface
         </form>
         <?php
 
-        echo $this->printJsHandler($cssId, $chloroform['fields'], [
-            "displayErrorSummary" => $this->displayErrorSummary,
-            "displayInlineErrors" => $this->displayInlineErrors,
-            "showOnlyFirstError" => $this->options['showOnlyFirstError'],
-            "useValidation" => $this->options['useValidation'],
-        ]);
+        if (true === $this->options['renderPrintsJsHandler']) {
+            $this->printJsHandler($cssId, $chloroform['fields'], [
+                "displayErrorSummary" => $this->displayErrorSummary,
+                "displayInlineErrors" => $this->displayInlineErrors,
+                "showOnlyFirstError" => $this->options['showOnlyFirstError'],
+                "useValidation" => $this->options['useValidation'],
+            ]);
+        }
 
 
         return ob_get_clean();

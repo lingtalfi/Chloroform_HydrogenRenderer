@@ -51,7 +51,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [HydrogenRenderer::printErrorSummary](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php#L238-L271)
+See the source code for method [HydrogenRenderer::printErrorSummary](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php#L242-L275)
 
 
 See Also

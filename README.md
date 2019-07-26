@@ -360,6 +360,10 @@ Depending on your css skills, you might get another look and feel quite easily.
 History Log
 =============
 
+- 1.1.0 -- 2019-07-26
+
+    - add HydrogenRenderer->renderPrintsJsHandler option
+    
 - 1.0.3 -- 2019-07-25
 
     - update README.md

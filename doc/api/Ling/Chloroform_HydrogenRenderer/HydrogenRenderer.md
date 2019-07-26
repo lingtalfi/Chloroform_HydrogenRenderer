@@ -4,7 +4,7 @@
 
 The HydrogenRenderer class
 ================
-2019-04-15 --> 2019-07-25
+2019-04-15 --> 2019-07-26
 
 
 
@@ -126,6 +126,7 @@ Properties
     - displayErrorMode: string=both (both | inline | summary). How to display error messages: whether inline (i.e. above the form fields),
              in an error summary at the top of the form (summary mode), or both at the same time.
     - useValidation: bool=true. Set it to false to debug static validation, or if you don't need js validation at all.
+    - renderPrintsJsHandler: bool=true. Whether the render method should print the js handler. If false, you are responsible for printing the js handler manually wherever you see fit (usually just before the body tag).
     
     
 

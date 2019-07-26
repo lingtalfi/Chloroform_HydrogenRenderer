@@ -67,7 +67,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [HydrogenRenderer::printJsHandler](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php#L786-L794)
+See the source code for method [HydrogenRenderer::printJsHandler](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/HydrogenRenderer.php#L790-L798)
 
 
 See Also
