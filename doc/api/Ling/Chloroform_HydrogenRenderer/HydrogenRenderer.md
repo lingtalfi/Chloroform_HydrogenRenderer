@@ -70,6 +70,8 @@ class <span class="pl-k">HydrogenRenderer</span> implements [ChloroformRendererI
     - protected array [$options](#property-options) ;
     - protected bool [$displayInlineErrors](#property-displayInlineErrors) ;
     - protected bool [$displayErrorSummary](#property-displayErrorSummary) ;
+    - protected string [$_formCssId](#property-_formCssId) ;
+    - protected array [$_chloroformFields](#property-_chloroformFields) ;
 
 - Methods
     - public [__construct](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/__construct.md)(array $options = []) : void
@@ -91,7 +93,7 @@ class <span class="pl-k">HydrogenRenderer</span> implements [ChloroformRendererI
     - public [printRadioField](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printRadioField.md)(array $field) : void
     - public [printFileField](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printFileField.md)(array $field) : void
     - public [printPasswordField](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printPasswordField.md)(array $field) : void
-    - public [printJsHandler](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printJsHandler.md)(string $cssId, array $fields, array $options) : void
+    - public [printJsHandler](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printJsHandler.md)(array $options = null) : void
     - protected [printInputField](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printInputField.md)(array $field, string $type) : void
     - protected [printFieldLabel](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/printFieldLabel.md)(array $field) : void
     - protected [getCssIdById](https://github.com/lingtalfi/Chloroform_HydrogenRenderer/blob/master/doc/api/Ling/Chloroform_HydrogenRenderer/HydrogenRenderer/getCssIdById.md)(string $id) : string
@@ -139,6 +141,20 @@ Properties
 - <span id="property-displayErrorSummary"><b>displayErrorSummary</b></span>
 
     This property holds the displayErrorSummary for this instance.
+    
+    
+
+- <span id="property-_formCssId"><b>_formCssId</b></span>
+
+    This property holds the css id of the form.
+    This property becomes only available when the render method is called.
+    
+    
+
+- <span id="property-_chloroformFields"><b>_chloroformFields</b></span>
+
+    This property holds the chloroform fields for this instance.
+    This property becomes only available when the render method is called.
     
     
 

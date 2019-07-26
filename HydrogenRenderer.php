@@ -111,6 +111,22 @@ class HydrogenRenderer implements ChloroformRendererInterface
 
 
     /**
+     * This property holds the css id of the form.
+     * This property becomes only available when the render method is called.
+     *
+     * @var string
+     */
+    protected $_formCssId;
+
+    /**
+     * This property holds the chloroform fields for this instance.
+     * This property becomes only available when the render method is called.
+     * @var array
+     */
+    protected $_chloroformFields;
+
+
+    /**
      * Builds the HydrogenRenderer instance.
      *
      * @param array $options
@@ -154,6 +170,9 @@ class HydrogenRenderer implements ChloroformRendererInterface
             $this->displayInlineErrors = true;
         }
 
+        $this->_formCssId = "";
+        $this->_chloroformFields = [];
+
     }
 
 
@@ -165,6 +184,12 @@ class HydrogenRenderer implements ChloroformRendererInterface
 
 
         $cssId = StringTool::getUniqueCssId();
+
+        // storing cache vars for the js handler
+        $this->_formCssId = $cssId;
+        $this->_chloroformFields = $chloroform['fields'];
+
+
         ob_start();
         ?>
         <form id="<?php echo $cssId; ?>" novalidate class="hydrogen" method="<?php echo $this->options['method']; ?>"
@@ -196,12 +221,7 @@ class HydrogenRenderer implements ChloroformRendererInterface
         <?php
 
         if (true === $this->options['renderPrintsJsHandler']) {
-            $this->printJsHandler($cssId, $chloroform['fields'], [
-                "displayErrorSummary" => $this->displayErrorSummary,
-                "displayInlineErrors" => $this->displayInlineErrors,
-                "showOnlyFirstError" => $this->options['showOnlyFirstError'],
-                "useValidation" => $this->options['useValidation'],
-            ]);
+            $this->printJsHandler();
         }
 
 
@@ -781,14 +801,20 @@ class HydrogenRenderer implements ChloroformRendererInterface
      * - useValidation: bool. Whether to use the js validation system at all.
      *
      *
-     *
-     * @param string $cssId
-     * The form css id.
-     * @param array $fields
      * @param array $options
      */
-    public function printJsHandler(string $cssId, array $fields, array $options)
+    public function printJsHandler(array $options = null)
     {
+        $cssId = $this->_formCssId;
+        $fields = $this->_chloroformFields;
+        if (null === $options) {
+            $options = [
+                "displayErrorSummary" => $this->displayErrorSummary,
+                "displayInlineErrors" => $this->displayInlineErrors,
+                "showOnlyFirstError" => $this->options['showOnlyFirstError'],
+                "useValidation" => $this->options['useValidation'],
+            ];
+        }
         ?>
         <script>
             var formHandler = new FormHandler($('#<?php echo $cssId ?>'), <?php echo json_encode($fields); ?>, <?php echo json_encode($options); ?>);
