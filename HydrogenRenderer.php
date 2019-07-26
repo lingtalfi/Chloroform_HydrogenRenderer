@@ -817,8 +817,10 @@ class HydrogenRenderer implements ChloroformRendererInterface
         }
         ?>
         <script>
-            var formHandler = new FormHandler($('#<?php echo $cssId ?>'), <?php echo json_encode($fields); ?>, <?php echo json_encode($options); ?>);
-            formHandler.init();
+            $(document).ready(function () {
+                var formHandler = new FormHandler($('#<?php echo $cssId ?>'), <?php echo json_encode($fields); ?>, <?php echo json_encode($options); ?>);
+                formHandler.init();
+            });
         </script>
         <?php
     }

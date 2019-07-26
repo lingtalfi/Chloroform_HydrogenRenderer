@@ -360,9 +360,13 @@ Depending on your css skills, you might get another look and feel quite easily.
 History Log
 =============
 
+- 1.2.1 -- 2019-07-26
+
+    - fix HydrogenRenderer->printJsHandler typo
+    
 - 1.2.0 -- 2019-07-26
 
-    - enhance HydrogenRenderer-printJsHandler for standalone call
+    - enhance HydrogenRenderer->printJsHandler for standalone call
     
 - 1.1.0 -- 2019-07-26
 
