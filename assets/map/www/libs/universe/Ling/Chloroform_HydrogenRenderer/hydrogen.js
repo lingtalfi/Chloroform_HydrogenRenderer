@@ -5,6 +5,29 @@ if (false === ("FormHandler" in window)) {
     (function () {
 
 
+        /**
+         * https://stackoverflow.com/a/63355463/405042
+         */
+        function isNumber(value, acceptScientificNotation) {
+
+            if (true !== acceptScientificNotation) {
+                return /^-{0,1}\d+(\.\d+)?$/.test(value);
+            }
+
+            if (true === Array.isArray(value)) {
+                return false;
+            }
+            return !isNaN(parseInt(value, 10));
+        }
+
+
+
+        function isIntegerLike(value) {
+            return /^-{0,1}\d+$/.test(value);
+        }
+
+
+
         function FormHandler(jForm, fields, options) {
 
             console.log(options);
@@ -177,6 +200,24 @@ if (false === ("FormHandler" in window)) {
                             var errorMessage = null;
 
                             switch (name) {
+                                case 'Ling\\Chloroform\\Validator\\IsIntegerValidator':
+                                    if (
+                                        false === isIntegerLike(value)
+                                    ) {
+                                        errorMessage = this.getErrorMessage("main", validator, {
+                                            "fieldName": errorName,
+                                        });
+                                    }
+                                    break;
+                                case 'Ling\\Chloroform\\Validator\\IsNumberValidator':
+                                    if (
+                                        false === isNumber(value)
+                                    ) {
+                                        errorMessage = this.getErrorMessage("main", validator, {
+                                            "fieldName": errorName,
+                                        });
+                                    }
+                                    break;
                                 case 'Ling\\Chloroform\\Validator\\FileMimeTypeValidator':
                                     fileInfo = this.getFileInfo(jField);
                                     if (false !== fileInfo) {
