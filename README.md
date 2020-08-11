@@ -383,6 +383,10 @@ Related
 History Log
 =============
 
+- 1.4.0 -- 2020-08-11
+
+    - update hydrogen.js, now supports isIntegerValidator.mode option
+    
 - 1.3.0 -- 2020-08-11
 
     - add support for IsIntegerValidator and isNumberValidator
