@@ -108,6 +108,8 @@ The Hydrogen renderer's js layer will handle the following validators:
 
 
 - IsIntegerValidator
+- IsMysqlDateValidator
+- IsMysqlDatetimeValidator
 - IsNumberValidator
 - MinMaxCharValidator
 - MinMaxNumberValidator
@@ -383,6 +385,14 @@ Related
 History Log
 =============
 
+- 1.4.1 -- 2020-12-04
+
+    - Add lpi-deps.byml file
+
+- 1.5.0 -- 2020-08-11
+
+    - update hydrogen.js, now supports IsMysqlDateValidator and IsMysqlDatetimeValidator
+    
 - 1.4.0 -- 2020-08-11
 
     - update hydrogen.js, now supports isIntegerValidator.mode option
